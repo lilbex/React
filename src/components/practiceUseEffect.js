@@ -15,10 +15,9 @@ const Timer = () => {
   })
 
   useEffect(()=>{
-    // fetchData();
     fetchDataAlt();
 },[])
-
+// console.log(data)
   // const fetchData = ()=>{
   //   fetch("http://127.0.0.1:8000/api/v1/billings/banks")
   //   .then((res)=>res.json())
@@ -30,8 +29,7 @@ const Timer = () => {
       const response = await axios.get("https://jsonplaceholder.typicode.com/todos")
       setData(response.data)
       console.log(response.data)
-     
-    }
+     }
     catch(error){
       console.log(error)
     }

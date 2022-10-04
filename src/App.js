@@ -1,22 +1,30 @@
 // import Home from './components/practiceuseState'
-// import Timer from "./components/practiceUseEffect.js"
-import { useState } from "react";
-import PracticeUseRef from "./components/useRef/practiceUseRef.js";
-import Table from "./components/useRef/practiceuseRefTable";
+import Timer from "./components/practiceUseEffect.js";
+import PracticeUseRef from "./components/useRef/PracticeUseRef";
+import PracticeUseMemo from "./components/useMemo/practiceUseMemo";
+import PracticeUseCallBack from "./components/useCallBack/practiceUseCallBack";
+import PracticeUseCallBack2 from "./components/useCallBack/practiceUseCallBack2";
+import Table from "./components/useRef/practiceUseRefTable";
 import { Routes, Route } from "react-router-dom";
-import { Context } from "./context/contextCreator";
+import { UserContext } from "./context/createContext";
+import React,{useState} from "react";
 
 function App() {
-  const [user, setUser] = useState('Elias Imokhai');
+  const [name, setName] = useState("")
+
   return (
-    <Context.Provider value={{user,setUser}} > 
+    <UserContext.Provider value={{ name,setName }}>
       <div className="App">
         <Routes>
+          <Route path="/login"  />
           <Route path="/" element={<PracticeUseRef />} />
           <Route path="/table" element={<Table />} />
+          <Route path="/memo" element={<PracticeUseMemo />} />
+          <Route path="/callback" element={<PracticeUseCallBack />} />
+          <Route path="/callback2" element={<PracticeUseCallBack2 />} />
         </Routes>
       </div>
-    </Context.Provider  >
+    </UserContext.Provider>
   );
 }
 

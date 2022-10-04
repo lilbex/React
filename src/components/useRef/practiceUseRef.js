@@ -1,35 +1,31 @@
-import { useState, useEffect, useRef, useContext } from "react";
-import { Context } from "../../context/contextCreator";
-import { Link } from 'react-router-dom'
+import React,{useState,useRef,useEffect} from "react";
+import { Link } from "react-router-dom";
 
 
-function PracticeUseRef() {
+const PracticeUseRef = () => {
   const [inputValue, setInputValue] = useState("");
-  const count = useRef(0);
+  const countRef = useRef(0);
 
-  const setContext = useContext(Context);
-  
-  const {user} = useContext(Context);
-
-  useEffect(()=>{
-    setContext.setUser("New Elias Imokhai")
-  })
-    
   useEffect(() => {
-    count.current = count.current + 1;
-  });
+    countRef.current = countRef.current + 1;
+  })
+
+  // console.log(countRef.current) 
 
   return (
-    <>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <h1>Render Count: {count.current}</h1>
-      <Link to='/table' >Home</Link>
-    </>
+    <div>
+      <input 
+      type="text"
+      value={inputValue}
+      onChange={(e)=>setInputValue(e.target.value)}
+
+      style={{width:"200px", height:"50px", fontSize:"20px", padding:"10px"}}
+
+       />
+       <p>the DOM updated {countRef.current} </p>
+        <Link to="/table">Go to table</Link>
+    </div>
   );
-}
+};
 
 export default PracticeUseRef;
