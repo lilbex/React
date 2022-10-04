@@ -8,6 +8,7 @@ import Table from "./components/useRef/practiceUseRefTable";
 import { Routes, Route } from "react-router-dom";
 import { UserContext } from "./context/createContext";
 import React,{useState} from "react";
+import PracticeRedux from "./components/practiceRedux/practiceRedux";
 
 function App() {
   const [name, setName] = useState("")
@@ -22,6 +23,7 @@ function App() {
           <Route path="/memo" element={<PracticeUseMemo />} />
           <Route path="/callback" element={<PracticeUseCallBack />} />
           <Route path="/callback2" element={<PracticeUseCallBack2 />} />
+          <Route path="/redux" element={<PracticeRedux />} />
         </Routes>
       </div>
     </UserContext.Provider>
