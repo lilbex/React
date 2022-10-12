@@ -2,11 +2,28 @@ import React,{Fragment,useState,useRef, useEffect, useContext} from "react";
 import { data } from './data'
 import "./popup.css"
 import { UserContext } from "../../context/createContext";
+import useDialog from "../hooks/useDialog";
+import fetchTodo from "../../redux/actions/fetchTodo";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const Table = () => {
   const [idOfTable, setIdOfTable] = useState(-1)
   const {name} = useContext(UserContext)
   const setContext = useContext(UserContext)
+
+  const {deleteItemId} = useDialog()
+
+  useEffect(() => {
+    dispatch(fetchTodo())
+  }, [])
+
+
+const dispatch = useDispatch()
+
+const todos = useSelector((state)=>state.todos)
+
+console.log(todos)
 
   useEffect(() => {
     setContext.setName("Elias Imokhai")
@@ -23,6 +40,10 @@ const Table = () => {
   useEffect(()=>{
     document.addEventListener("click", handleClickOutside, true)
   })
+
+  const handleDelete = (id)=>{
+    console.log(id)
+  }
 
   return (
     <div>
@@ -49,7 +70,7 @@ const Table = () => {
                 <span ref={ref} className="pop">
                   <p>View Detail</p>
                   <p>Edit</p>
-                  <p style={{color:"red"}}>Delete</p>
+                  <p onClick={()=>deleteItemId(handleDelete,item.id)} style={{color:"red"}}>Delete</p>
                 </span>
               </Fragment>
               }

@@ -1,8 +1,8 @@
 import React from "react";
 
 const Title = () => {
-  console.log("rendering title");
-  return <h2>useCallBack Hook</h2>;
+  console.log("Rendering Title");
+  return <h2>useCallback Hook</h2>;
 }
 
 export default React.memo(Title);

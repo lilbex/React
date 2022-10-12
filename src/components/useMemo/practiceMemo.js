@@ -1,37 +1,37 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo,useEffect } from "react";
 import styled from "styled-components";
+import Button  from "../styledComponents.js/Button";
 
-const PracticeUseMemo = () => {
+const PracticeMemo = () => {
   const [count, setCount] = useState(0);
   const [count1, setCount1] = useState(0);
 
-  const checkIsEven = (count) => {
+  const isEven = useMemo(() => {
     let i = 0;
     while (i < 2000000000) i++;
     return count % 2 === 0;
-  };
-
-  const isEven = useMemo(() => {
-    return checkIsEven(count);
   }, [count]);
 
-  // const myCount = checkIsEven(count);
 
   return (
     <Wrapper>
-      <div className='div-wrapper'>
-        <button onClick={() => setCount(count + 1)}>Count - {count}</button>
+      <h1>Practice Memo</h1>
+      <div>
+        <button onClick={() => setCount(count + 1)}> Count - {count} </button>
         <span>{isEven ? "Even" : "Odd"}</span>
       </div>
 
       <div>
-        <button onClick={() => setCount1(count1 + 1)}>Count1 - {count1}</button>
+        <button onClick={() => setCount1(count1 + 1)}>
+          Count1 - {count1}
+        </button>
       </div>
+      <Button borderRadius="50px" width="500px">Click</Button>
     </Wrapper>
   );
 };
 
-export default PracticeUseMemo;
+export default PracticeMemo;
 
 const Wrapper = styled.div`
   display: flex;
@@ -40,15 +40,12 @@ const Wrapper = styled.div`
   justify-content: center;
   height: 100vh;
   background-color: #f5f5f5;
-  .div-wrapper{
-    display: flex;
-    align-items: center;
-  }
-  button {
+  gap:50px;
+
+  button{
+    padding: 10px;
     width: 200px;
     height: 50px;
     font-size: 20px;
-    padding: 10px;
-    margin: 10px;
   }
 `;

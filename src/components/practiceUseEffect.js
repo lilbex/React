@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import '../styles/table.style.css'
+import useFetch from './hooks/useFetch'
 
 
 const Timer = () => {
 
   const [count, setCount] = useState(0)
-  const [data, setData] = useState([])
+  // const [data, setData] = useState([])
 
   useEffect(()=>{
     setTimeout(()=>{
@@ -14,9 +15,12 @@ const Timer = () => {
     },1000);
   })
 
-  useEffect(()=>{
-    fetchDataAlt();
-},[])
+//   useEffect(()=>{
+//     fetchDataAlt();
+// },[])
+
+const [data] = useFetch('https://jsonplaceholder.typicode.com/todos')
+
 // console.log(data)
   // const fetchData = ()=>{
   //   fetch("http://127.0.0.1:8000/api/v1/billings/banks")
@@ -24,16 +28,16 @@ const Timer = () => {
   //   .then((data)=>setData(data))
   // }
 
-  const fetchDataAlt = async ()=>{
-    try{
-      const response = await axios.get("https://jsonplaceholder.typicode.com/todos")
-      setData(response.data)
-      console.log(response.data)
-     }
-    catch(error){
-      console.log(error)
-    }
-  }
+  // const fetchDataAlt = async ()=>{
+  //   try{
+  //     const response = await axios.get("https://jsonplaceholder.typicode.com/todos")
+  //     setData(response.data)
+  //     console.log(response.data)
+  //    }
+  //   catch(error){
+  //     console.log(error)
+  //   }
+  // }
 
   return(
     <div className='table-container'>

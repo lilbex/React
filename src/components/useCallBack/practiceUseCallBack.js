@@ -1,35 +1,40 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
+import Count from "./callbackcom/Counts";
+import Title from "./callbackcom/Title";
+import Button from "./callbackcom/Button";
+import styled from "styled-components";
 
-const PracticeUseCallBack = () => {
-  const [count, setCount] = React.useState(0);
-  const [count2, setCount2] = React.useState(0);
+const ParentComponent = () => {
+  const [age, setAge] = useState(25);
+  const [salary, setSalary] = useState(50000);
 
-  const theme = {
-    dark: {
-      background: "#000",
-      color: "#fff",
-    },
-    light: {
-      background: "#fff",
-      color: "#000",
-    },
-  };
+  const incrementAge = useCallback(() => {
+    setAge(age + 1);
+  }, [age]);
 
-  const increment = React.useCallback(() => {
-    setCount((c) => c + 1);
-  }, [setCount]);
-
-  const increment2 = React.useCallback(() => {
-    setCount2((c) => c + 1);
-  }, [setCount2]);
+  const incrementSalary = useCallback(() => {
+    setSalary(salary + 1000);
+  }, [salary]);
 
   return (
-    <div>
-      <button onClick={increment}>Count {count}</button>
-      <button onClick={increment2}>Count2 {count2}</button>
-    </div>
+    <Wrapper>
+      <Title />
+      <Count text="Age" count={age} />
+      <Button handleClick={incrementAge}>Increment Age</Button>
+      <Count text="Salary" count={salary} />
+      <Button handleClick={incrementSalary}>Increment Salary</Button>
+    </Wrapper>
   );
-}
+};
 
-export default PracticeUseCallBack
-  
+export default ParentComponent;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+  gap: 50px;
+`;

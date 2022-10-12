@@ -1,8 +1,5 @@
-import {
-  FETCH_TODO_SUCCESS,
-  LOADING,
-  FETCH_TODO_FAILED,
-} from "../actionTypes";
+import { FETCH_TODO_SUCCESS,FETCH_TODO_FAILED, LOADING } from "../actionTypes";
+
 
 const initialState = {
   errors: "",
@@ -11,32 +8,30 @@ const initialState = {
 };
 
 const fetchTodoReducer = (state = initialState, action) => {
-  const { type, payload } = action;
-  switch (type) {
+  // const { type, payload } = action; if you want to destructure
+  switch (action.type) {
     case LOADING:
       return {
         ...state,
         loading: true,
       };
     case FETCH_TODO_SUCCESS:
-      // console.log("Response", payload);
       return {
         ...state,
-        data: payload,
-        errors: "",
+        data: action.payload,
         loading: false,
+        errors: "",
       };
-
     case FETCH_TODO_FAILED:
       return {
         ...state,
-        data: null,
-        errors: payload.error,
+        errors: action.errors,
+        data: [],
         loading: false,
       };
     default:
       return state;
   }
-};
+}
 
 export default fetchTodoReducer;

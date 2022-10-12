@@ -1,14 +1,13 @@
 // import Home from './components/practiceuseState'
-import Timer from "./components/practiceUseEffect.js";
+import Todo from "./components/practiceUseEffect.js";
 import PracticeUseRef from "./components/useRef/PracticeUseRef";
-import PracticeUseMemo from "./components/useMemo/practiceUseMemo";
-import PracticeUseCallBack from "./components/useCallBack/practiceUseCallBack";
-import PracticeUseCallBack2 from "./components/useCallBack/practiceUseCallBack2";
 import Table from "./components/useRef/practiceUseRefTable";
 import { Routes, Route } from "react-router-dom";
 import { UserContext } from "./context/createContext";
 import React,{useState} from "react";
-import PracticeRedux from "./components/practiceRedux/practiceRedux";
+import PracticeMemo from "./components/useMemo/practiceMemo";
+import ParentComponent from "./components/useCallBack/practiceUseCallBack";
+import Button from "./components/styledComponents.js/Button";
 
 function App() {
   const [name, setName] = useState("")
@@ -19,11 +18,11 @@ function App() {
         <Routes>
           <Route path="/login"  />
           <Route path="/" element={<PracticeUseRef />} />
+          <Route path="/todos" element={<Todo />} />
           <Route path="/table" element={<Table />} />
-          <Route path="/memo" element={<PracticeUseMemo />} />
-          <Route path="/callback" element={<PracticeUseCallBack />} />
-          <Route path="/callback2" element={<PracticeUseCallBack2 />} />
-          <Route path="/redux" element={<PracticeRedux />} />
+          <Route path="/memo" element={<PracticeMemo />} />
+          <Route path="/callback" element={<ParentComponent />} />
+          <Route path="/button" element={<Button borderRadius="50px" width="500px">Click</Button>} />
         </Routes>
       </div>
     </UserContext.Provider>
